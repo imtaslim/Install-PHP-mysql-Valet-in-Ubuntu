@@ -117,6 +117,9 @@ sudo apt-get update
 # Install valet
 ~~~
 composer global require cpriego/valet-linux
+~~~
+then
+~~~
 test -d /.composer && bash /.composer/vendor/bin/valet install || bash ~/.config/composer/vendor/bin/valet install
 ~~~
 

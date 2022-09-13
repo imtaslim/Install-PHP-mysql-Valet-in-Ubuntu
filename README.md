@@ -30,11 +30,7 @@ curl --version
 sudo apt install nginx
 ~~~
 
-# Install PHP 8.0 with FPM
-~~~
-sudo apt install php8.0-fpm
-~~~
-if you get issue with PHP 8.0 version then simply run this command
+# Install PHP with FPM
 ~~~
 sudo apt install php-fpm
 ~~~
@@ -42,7 +38,7 @@ it will install php 7.4 in your ubuntu and you are good to go
 
 # Now Check PHP version
 ~~~
-PHP -v
+php -v
 ~~~
 
 # run this again
@@ -57,7 +53,7 @@ sudo add-apt-repository ppa:ondrej/nginx
 
 # To check the status of PHP that it has collabrate properly with Ngnix repository
 ~~~
-sudo systemctl status php-fpm
+sudo systemctl status php8.1-fpm
 ~~~
 
 # Now Restart Nginx
@@ -76,15 +72,7 @@ sudo apt-get install network-manager libnss3-tools jq xsel
 
 # Install PHP Extensions
 ~~~
-sudo apt-get install php-zip
-~~~
-then
-~~~
-sudo apt-get install php-mbstring
-~~~
-then
-~~~
-sudo apt-get install php-curl
+sudo apt-get install php-zip && sudo apt-get install php-mbstring && sudo apt-get install php-curl
 ~~~
 It will automatically detect your version and do its own work
 
@@ -132,6 +120,91 @@ then
 valet install
 ~~~
 
+# run this again
+~~~
+sudo apt-get update
+~~~
+
+# Install MySQL Server
+~~~
+sudo apt install mysql-server -y
+~~~
+
+# Adjusting mysql Authentication (Optional)
+~~~
+sudo mysql
+~~~
+then
+~~~
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+~~~
+then
+~~~
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+~~~
+then
+~~~
+FLUSH PRIVILEGES;
+~~~
+now exit by
+~~~
+exit;
+~~~
+
+# run this again
+~~~
+sudo apt-get update
+~~~
+
+# Install phpmyadmin
+~~~
+sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+~~~
+
+if you face any difficulties follow the below link
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-20-04
+
+# Symlink phpmyadmin With MySQL Server
+Now You have to go to your C Drive & open the Terminal and run this
+~~~
+sudo chmod -R 777 /var/www
+~~~
+This will give Permission to Symlink now come back to root terminal & run this
+~~~
+ln -s /usr/share/phpmyadmin /var/www/phpmyadmin
+~~~
+Then
+~~~
+sudo chmod -R 777 /var/www/phpmyadmin
+~~~
+
+# run this again
+~~~
+sudo apt-get update
+~~~
+
+# Install Node JS
+~~~
+sudo apt install nodejs
+~~~
+then check nodejs version
+~~~
+node -v
+~~~
+
+# Install NPM
+~~~
+sudo apt install npm
+~~~
+then
+~~~
+sudo apt-get install --reinstall nodejs-legacy     # fix /usr/bin/node
+~~~
+
+<h2>You are good to go, Now develop your web application in your ubuntu by Using Laravel & PHP....</h2>
+
+
+
 
 # Serving Sites by Valet
 Once Valet is installed, you’re ready to start serving sites. Valet provides two commands to help you serve your Laravel sites: park and link.
@@ -174,77 +247,3 @@ You may use this to destroy the symbolic link.
 valet unlink app-name
 ~~~
 
-# run this again
-~~~
-sudo apt-get update
-~~~
-
-# Install MySQL Server
-~~~
-sudo apt install mysql-server -y
-~~~
-
-# Run this to Secure MySQL Server
-~~~
-sudo mysql_secure_installation
-~~~
-# Adjusting mysql Authentication (Optional)
-~~~
-sudo mysql
-~~~
-then
-~~~
-SELECT user,authentication_string,plugin,host FROM mysql.user;
-~~~
-then
-~~~
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-~~~
-then
-~~~
-FLUSH PRIVILEGES;
-~~~
-now exit by
-~~~
-exit;
-~~~
-
-# run this again
-~~~
-sudo apt-get update
-~~~
-
-# Install phpmyadmin
-~~~
-sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
-~~~
-
-# Symlink phpmyadmin With MySQL Server
-Now You have to go to your C Drive & open the Terminal and run this
-~~~
-sudo chmod -R 777 /var/www
-~~~
-This will give Permission to Symlink now come back to root terminal & run this
-~~~
-ln -s /usr/share/phpmyadmin /var/www/phpmyadmin
-~~~
-
-# run this again
-~~~
-sudo apt-get update
-~~~
-
-# Install Node JS
-~~~
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-~~~
-then
-~~~
-sudo apt install nodejs
-~~~
-then
-~~~
-sudo apt-get install --reinstall nodejs-legacy     # fix /usr/bin/node
-~~~
-
-<h2>You are good to go, Now develop your web application in your ubuntu by Using Laravel & PHP....</h2>

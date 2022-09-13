@@ -130,7 +130,7 @@ sudo apt-get update
 sudo apt install mysql-server -y
 ~~~
 
-# Adjusting mysql Authentication (Optional)
+# Adjusting mysql Authentication
 ~~~
 sudo mysql
 ~~~
